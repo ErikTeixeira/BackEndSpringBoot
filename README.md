@@ -8,5 +8,5 @@
   - Email
   - Senha
   - Telefone
-  - Dia do aniversario
+  - Dia do aniversário
   - Imagem de perfil
