@@ -13,19 +13,21 @@ public class UsuarioModel {
     private Long id;
     private String nome;
     private String sobrenome;
-    private int idade;
     private String email;
     private String senha;
     private String telefone;
     private LocalDate dataNascimento;
 
+    @ManyToOne
+    @JoinColumn( name = "tarefas_id" )
+    private TarefasModel tarefas;
+
     public UsuarioModel() {
     }
 
-    public UsuarioModel(String nome, String sobrenome, int idade, String email, String senha, String telefone, LocalDate dataNascimento) {
+    public UsuarioModel(String nome, String sobrenome, String email, String senha, String telefone, LocalDate dataNascimento) {
         this.nome = nome;
         this.sobrenome = sobrenome;
-        this.idade = idade;
         this.email = email;
         this.senha = senha;
         this.telefone = telefone;
@@ -46,14 +48,6 @@ public class UsuarioModel {
 
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
     }
 
     public String getEmail() {
