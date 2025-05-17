@@ -1,13 +1,13 @@
-package br.com.projestudo.CadastroDeUsuarios;
+package br.com.projCarro.CarroProjeto;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CadastroDeUsuariosApplication {
+public class CarroProjetoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CadastroDeUsuariosApplication.class, args);
+		SpringApplication.run(CarroProjetoApplication.class, args);
 	}
 
 }
