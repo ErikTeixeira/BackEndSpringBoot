@@ -14,6 +14,16 @@ public class CarroService {
     @Autowired
     private CarroRepository carroRepository;
 
+
+    private void validarNomeModelo(Carro carro) {
+        String nome = carro.getNome()   != null ? carro.getNome().trim().toLowerCase()   : "";
+        String modelo = carro.getModelo() != null ? carro.getModelo().trim().toLowerCase() : "";
+
+        if (!nome.isEmpty() && nome.equals(modelo)) {
+            throw new IllegalArgumentException("O nome e o modelo não podem ser iguais.");
+        }
+    }
+
     public List<Carro> findAll(){
         return this.carroRepository.findAll();
     }
@@ -28,13 +38,17 @@ public class CarroService {
     }
 
     public String save(Carro carro) {
-        this.carroRepository.save(carro);
+        validarNomeModelo(carro);
+
+        carroRepository.save(carro);
         return "Carro salvo com sucesso";
     }
 
     public String update(Carro carro, long id) {
+        validarNomeModelo(carro);
+
         carro.setId(id);
-        this.carroRepository.save(carro);
+        carroRepository.save(carro);
         return "Carro atualizado com sucesso";
     }
 

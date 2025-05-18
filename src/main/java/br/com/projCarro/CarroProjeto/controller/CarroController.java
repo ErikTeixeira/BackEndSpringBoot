@@ -53,7 +53,7 @@ public class CarroController {
     @PutMapping("/update/{id}")
     public ResponseEntity<String> update(@RequestBody Carro carro, @PathVariable long id){
         String mensagem = this.carroService.update(carro, id);
-        return new ResponseEntity<String>(mensagem, HttpStatus.OK);
+        return new ResponseEntity<>(mensagem, HttpStatus.OK);
     }
 
 
