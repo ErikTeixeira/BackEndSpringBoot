@@ -1,0 +1,42 @@
+# version: '3.8' # Pode remover, é obsoleto
+
+services:
+  meu-app-spring:
+    build: . # Diz para usar o Dockerfile no diretório atual
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/carros
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      mysql-db: # Nome do serviço do qual depende
+        condition: service_healthy # Condição para este serviço
+    networks:
+      - minha-rede
+
+  mysql-db:
+    image: mysql:8.0
+    ports:
+      - "3307:3306" # Correto para evitar conflito com MySQL local no host
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: carros
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - minha-rede
+    healthcheck: # Chave principal do healthcheck
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-P", "3306", "-u", "root", "--password=root"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  mysql-data:
+
+networks:
+  minha-rede:
+    driver: bridge
