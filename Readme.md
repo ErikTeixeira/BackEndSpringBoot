@@ -74,6 +74,7 @@ Esta é a forma mais simples de subir a aplicação junto com o banco de dados M
 3.  **Acesse a aplicação:**
     *   A API estará disponível em: `http://localhost:8080/api`
     *   A documentação Swagger UI estará disponível em: `http://localhost:8080/swagger-ui.html`
+        <img src="imgs_readme/Swagger.png" alt="imageSwagger" width="600"/>
 
 4.  **Para parar os containers:**
     ```bash
